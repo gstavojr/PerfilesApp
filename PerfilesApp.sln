@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfilesApp", "PerfilesApp\PerfilesApp.csproj", "{B7DDD194-BF8C-496A-85A0-1C87BF6126E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfilesServer", "PerfilesServer\PerfilesServer.csproj", "{299FFA42-EA1E-4E41-8D48-2F406B715ACB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7DDD194-BF8C-496A-85A0-1C87BF6126E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7DDD194-BF8C-496A-85A0-1C87BF6126E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7DDD194-BF8C-496A-85A0-1C87BF6126E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7DDD194-BF8C-496A-85A0-1C87BF6126E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{299FFA42-EA1E-4E41-8D48-2F406B715ACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{299FFA42-EA1E-4E41-8D48-2F406B715ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{299FFA42-EA1E-4E41-8D48-2F406B715ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{299FFA42-EA1E-4E41-8D48-2F406B715ACB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3A07EB7-AA6E-4E01-8665-B5594F40846B}
+	EndGlobalSection
+EndGlobal
