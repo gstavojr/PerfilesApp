@@ -52,5 +52,19 @@ namespace PerfilesApp.Service
         return false;
       }
     }
+
+    public async Task<bool> PutAsync(string uri, HttpContent content)
+    {
+      try
+      {
+        HttpResponseMessage response = await _httpClient.PutAsync(uri, content);
+        return response.IsSuccessStatusCode;
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine($"Error al hacer la petición PUT: {ex.Message}");
+        return false;
+      }
+    }
   }
 }

@@ -24,6 +24,7 @@ namespace PerfilesApp.Pages
       {
         lblTitle.Text = $"{titlePage} Departamento";
         this.departamentoId = departamentoId != null && departamentoId != "0" ? Convert.ToInt32(departamentoId) : 0;
+        lblDepartamentoId.Text = this.departamentoId.ToString();
 
         if (this.departamentoId != 0)
         {

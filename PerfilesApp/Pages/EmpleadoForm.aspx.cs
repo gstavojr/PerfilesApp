@@ -28,7 +28,7 @@ namespace PerfilesApp.Pages
       {
         lblTitle.Text = $"{titlePage} Empleado";
         var empleadoId = empleadoIdStr != null && empleadoIdStr != "0" ? Convert.ToInt32(empleadoIdStr) : 0;
-
+        lblEmpleadoId.Text = empleadoId.ToString();
         if (empleadoId != 0)
         {
           await this.GetEmpleado(empleadoId);

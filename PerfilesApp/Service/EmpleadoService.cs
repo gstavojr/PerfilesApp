@@ -36,8 +36,13 @@ namespace PerfilesApp.Service
       string json = JsonConvert.SerializeObject(objetValue);
       HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-      var resp = await this.http.PostAsync("Empleado", content);
-      return resp;
+      if (objetValue.EmpleadoId == 0 )
+      {
+        return await this.http.PostAsync("Empleado", content);
+        
+      }
+      return await this.http.PutAsync($"Empleado/{objetValue.EmpleadoId}", content);
+
     }
   }
 }
