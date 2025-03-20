@@ -19,11 +19,8 @@ namespace PerfilesServer.Models.Dto
     public required string Sexo { get; set; }
     [Required(ErrorMessage = "El {0} es obligatorio")]
     public required DateTime FechaIngreso { get; set; }
-
-    [Required(ErrorMessage = "El {0} es obligatorio")]
-    public required string Direccion { get; set; }
-    [Required(ErrorMessage = "El {0} es obligatorio")]
-    public required string NIT { get; set; }
+    public string Direccion { get; set; }
+    public string NIT { get; set; }
     [Required(ErrorMessage = "El {0} es obligatorio")]
     public required int DepartamentoId { get; set; }
   }

@@ -76,6 +76,11 @@ namespace PerfilesApp
 
       var empleados = await this.GetEmpleados();
 
+      if (empleados == null)
+      {
+        return;
+      }
+
 
 
 

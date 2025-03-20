@@ -23,11 +23,32 @@ namespace Perfiles.AccesoDatos.Repository
       return this.SaveDepartamento(departamento);
     }
 
-   
+
 
     public bool DeleteDepartamento(int id)
     {
-      throw new NotImplementedException();
+      var departamentoSearch = this.GetDepartamento(id);
+
+      if (departamentoSearch == null)
+      {
+        return false;
+      }
+
+      try
+      {
+
+        this.conection.ExecuteNonQuery(
+          "DELETE FROM Departamento WHERE DepartamentoId = @DepartamentoId", 
+          new SqlParameter("@DepartamentoId", id)
+        );
+
+        return true;
+      }
+      catch (Exception ex)
+      {
+        return false;
+
+      }
     }
 
     public Departamento GetDepartamento(int id)
@@ -88,7 +109,7 @@ namespace Perfiles.AccesoDatos.Repository
         return departamentos;
 
       }
-      catch (Exception)
+      catch (Exception ex)
       {
         return departamentos;
       }

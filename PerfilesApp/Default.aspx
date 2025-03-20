@@ -54,6 +54,7 @@
                     ID="btnDelete"
                     runat="server"
                     CommandName="Delete"
+                    OnClick="BtnDelete_Click"
                     CommandArgument='<%# Eval("DepartamentoId ") %>'
                     CssClass="btn btn-danger">
                     <i class="fa-solid fa-trash"></i> Eliminar

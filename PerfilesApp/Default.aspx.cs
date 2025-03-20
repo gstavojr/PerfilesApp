@@ -42,5 +42,23 @@ namespace PerfilesApp
       string departamentoId = btn.CommandArgument;
       Response.Redirect($"~/Pages/DepartamentoForm.aspx?Id={departamentoId}");
     }
+
+    protected void BtnDelete_Click(object sender, EventArgs e)
+    {
+      try
+      {
+        LinkButton btn = (LinkButton)sender;
+        string departamentoId = btn.CommandArgument;
+        bool isDeleted = this.departamentoRespository.DeleteDepartamento(Convert.ToInt32(departamentoId));
+        if (isDeleted)
+        {
+          this.GetDepartamentos();
+        }
+      } catch (Exception ex)
+      {
+
+      }
+      
+    }
   }
 }

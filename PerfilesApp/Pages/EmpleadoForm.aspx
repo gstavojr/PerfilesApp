@@ -21,11 +21,23 @@
           <asp:Label ID="lblEmpleadoId" runat="server" Text="Id" Visible="false"></asp:Label>
           <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
           <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+          <asp:Label
+            ID="lblNombreError"
+           
+            runat="server"
+            Visible="false"
+            CssClass="text-danger"></asp:Label>
         </div>
 
         <div class="form-group">
           <asp:Label ID="Apellido" runat="server" Text="Apellido"></asp:Label>
           <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
+          <asp:Label
+            ID="lblApellidoError"
+            
+            runat="server"
+            Visible="false"
+            CssClass="text-danger"></asp:Label>
         </div>
 
 
@@ -33,12 +45,24 @@
         <div class="form-group">
           <asp:Label ID="lblDpi" runat="server" Text="DPI"></asp:Label>
           <asp:TextBox ID="txtDpi" runat="server" CssClass="form-control"></asp:TextBox>
+           <asp:Label
+             ID="lblDpiError"
+            
+             runat="server"
+             Visible="false"
+             CssClass="text-danger"></asp:Label>
         </div>
 
         <!--Fecha de Nacimiento-->
         <div class="form-group">
           <asp:Label ID="lblFechaNacimiento" runat="server" Text="Fecha de Nacimiento"></asp:Label>
           <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+           <asp:Label
+             ID="lblFechaNacimientoError"
+             
+             runat="server"
+             Visible="false"
+             CssClass="text-danger"></asp:Label>
         </div>
 
         <!--Sexo-->
@@ -48,12 +72,25 @@
             <asp:ListItem Text="Masculino" Value="Masculino"></asp:ListItem>
             <asp:ListItem Text="Femenino" Value="Femenino"></asp:ListItem>
           </asp:DropDownList>
+          <asp:Label
+            ID="lblSexoError"
+           
+            runat="server"
+            Visible="false"
+            CssClass="text-danger"></asp:Label>
+
         </div>
 
         <!--Fecha de Ingreso a laboral-->
         <div class="form-group">
           <asp:Label ID="lblFechaIngreso" runat="server" Text="Fecha de Ingreso"></asp:Label>
           <asp:TextBox ID="txtFechaIngreso" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+           <asp:Label
+             ID="lblFechaIngresoError"
+            
+             runat="server"
+             Visible="false"
+             CssClass="text-danger"></asp:Label>
          </div>
 
         <!--Direccion-->
@@ -73,6 +110,13 @@
           <asp:Label ID="lblDepartamento" runat="server" Text="Departamento"></asp:Label>
           <asp:DropDownList ID="ddlDepartamento" runat="server" CssClass="form-control">
           </asp:DropDownList>
+
+           <asp:Label
+             ID="lblDepartamentoError"
+            
+             runat="server"
+             Visible="false"
+             CssClass="text-danger"></asp:Label>
         </div>
 
 

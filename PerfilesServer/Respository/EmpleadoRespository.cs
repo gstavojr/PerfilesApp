@@ -97,6 +97,7 @@ namespace PerfilesServer.Respository
 
     public async Task<bool> SaveEmpleado(Empleado empleado)
     {
+
       try
       {
         SqlParameter[] parameters =
@@ -108,8 +109,8 @@ namespace PerfilesServer.Respository
           new SqlParameter("@FechaNacimiento", empleado.FechaNacimiento),
           new SqlParameter("@SEXO", empleado.Sexo),
           new SqlParameter("@FechaIngreso", empleado.FechaIngreso),
-          new SqlParameter("@Direccion", empleado.Direccion),
-          new SqlParameter("@NIT", empleado.NIT),
+          new SqlParameter("@Direccion", empleado.Direccion != null && empleado.Direccion != "" ? empleado.Direccion :  DBNull.Value),
+          new SqlParameter("@NIT", empleado.NIT != null && empleado.NIT != "" ? empleado.NIT:  DBNull.Value),
           new SqlParameter("@DepartamentoId", empleado.DepartamentoId),
         };
         string query = "EXEC sp_SaveEmpleado @EmpleadoId, @Nombre, @Apellido, @Dpi, @FechaNacimiento, @SEXO, @FechaIngreso, @Direccion, @NIT, @DepartamentoId";
@@ -122,6 +123,7 @@ namespace PerfilesServer.Respository
       {
         return false;
       }
+
     }
   }
 }

@@ -51,6 +51,15 @@ namespace PerfilesApp.Pages
     protected global::System.Web.UI.WebControls.TextBox txtNombre;
 
     /// <summary>
+    /// Control lblNombreError.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label lblNombreError;
+
+    /// <summary>
     /// Control Apellido.
     /// </summary>
     /// <remarks>
@@ -67,6 +76,15 @@ namespace PerfilesApp.Pages
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
     protected global::System.Web.UI.WebControls.TextBox txtApellido;
+
+    /// <summary>
+    /// Control lblApellidoError.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label lblApellidoError;
 
     /// <summary>
     /// Control lblDpi.
@@ -87,6 +105,15 @@ namespace PerfilesApp.Pages
     protected global::System.Web.UI.WebControls.TextBox txtDpi;
 
     /// <summary>
+    /// Control lblDpiError.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label lblDpiError;
+
+    /// <summary>
     /// Control lblFechaNacimiento.
     /// </summary>
     /// <remarks>
@@ -103,6 +130,15 @@ namespace PerfilesApp.Pages
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
     protected global::System.Web.UI.WebControls.TextBox txtFechaNacimiento;
+
+    /// <summary>
+    /// Control lblFechaNacimientoError.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label lblFechaNacimientoError;
 
     /// <summary>
     /// Control lblSexo.
@@ -123,6 +159,15 @@ namespace PerfilesApp.Pages
     protected global::System.Web.UI.WebControls.DropDownList ddlSexo;
 
     /// <summary>
+    /// Control lblSexoError.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label lblSexoError;
+
+    /// <summary>
     /// Control lblFechaIngreso.
     /// </summary>
     /// <remarks>
@@ -139,6 +184,15 @@ namespace PerfilesApp.Pages
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
     protected global::System.Web.UI.WebControls.TextBox txtFechaIngreso;
+
+    /// <summary>
+    /// Control lblFechaIngresoError.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label lblFechaIngresoError;
 
     /// <summary>
     /// Control lblDireccion.
@@ -193,6 +247,15 @@ namespace PerfilesApp.Pages
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
     protected global::System.Web.UI.WebControls.DropDownList ddlDepartamento;
+
+    /// <summary>
+    /// Control lblDepartamentoError.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label lblDepartamentoError;
 
     /// <summary>
     /// Control btnGuardar.
