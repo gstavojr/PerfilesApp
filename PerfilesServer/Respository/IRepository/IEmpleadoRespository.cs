@@ -4,10 +4,10 @@ namespace PerfilesServer.Respository.IRepository
 {
   public interface IEmpleadoRespository
   {
-    Task<IEnumerable<Empleado>> GetEmpleados();
-    Task<Empleado> GetEmpleado(int id);
-    Task<bool> SaveEmpleado(Empleado empleado);
-    bool DeleteEmpleado(int id);
+    Task<ResponseApi<IEnumerable<Empleado>>> GetEmpleados();
+    Task<ResponseApi<Empleado>> GetEmpleado(int id);
+    Task<ResponseApi<bool>> SaveEmpleado(Empleado empleado);
+    Task<ResponseApi<bool>> DeleteEmpleado(int id);
 
   }
 }

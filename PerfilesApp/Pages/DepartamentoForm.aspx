@@ -22,6 +22,12 @@
           <asp:Label ID="lblDepartamentoId" runat="server" Text="Id" Visible="false"></asp:Label>
           <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
           <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+          <asp:Label
+            ID="lblNombreError"
+            runat="server"
+            Visible="false"
+            CssClass="text-danger">
+          </asp:Label>
         </div>
         <div class="form-group">
           <asp:Label ID="lblEstado" runat="server" Text="Estado"></asp:Label>

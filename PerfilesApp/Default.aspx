@@ -16,6 +16,25 @@
     </div>
   </div>
 
+  <asp:Panel
+    ID="alerta"
+    class="alert alert-warning alert-dismissible fade show mt-3 "
+    role="alert"
+    runat="server"
+    Visible="false">
+    <div class="d-flex justify-content-between">
+
+      <asp:Label ID="lblMensajeAlerta" runat="server" Text="Operación exitosa."></asp:Label>
+      
+      <asp:LinkButton class="close" ID="btnCloseAlert" OnClick="BtnCloseAlert" runat="server">
+        <i class="fa-solid fa-xmark" style="color: black !important;"></i>
+      </asp:LinkButton>
+
+       
+    </div>
+
+    
+  </asp:Panel>
 
   <div class="row">
     <div class="offset-12">
@@ -53,7 +72,6 @@
                   <asp:LinkButton
                     ID="btnDelete"
                     runat="server"
-                    CommandName="Delete"
                     OnClick="BtnDelete_Click"
                     CommandArgument='<%# Eval("DepartamentoId ") %>'
                     CssClass="btn btn-danger">

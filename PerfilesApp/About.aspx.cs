@@ -47,9 +47,16 @@ namespace PerfilesApp
 
     private async Task<IEnumerable<Empleado>> GetEmpleados()
     {
-      var empleadosList = await this.empleadoService.GetObjects();
+      var response = await this.empleadoService.GetObjects();
 
-      return empleadosList;
+      if (!response.isSucces)
+      {
+        this.SetMessageAlert(response.Message, "alert alert-danger");
+        return new List<Empleado>();
+      }
+
+
+      return response.Data;
 
     }
 
@@ -76,7 +83,7 @@ namespace PerfilesApp
 
       var empleados = await this.GetEmpleados();
 
-      if (empleados == null)
+      if (empleados == null || !empleados.Any() )
       {
         return;
       }
@@ -97,6 +104,32 @@ namespace PerfilesApp
       txtFechaFin.Text = string.Empty;
       gvEmpleados.DataSource = await this.GetEmpleados(); ;
       gvEmpleados.DataBind();
+    }
+
+    protected async void BtnDelete_Click(object sender, EventArgs e)
+    {
+      LinkButton btn = (LinkButton)sender;
+      string id = btn.CommandArgument;
+      var response = await this.empleadoService.Delete(Convert.ToInt32(id));
+      if (!response.isSucces)
+      {
+        this.SetMessageAlert(response.Message, "alert alert-danger");
+        return;
+      }
+      this.SetMessageAlert($"Se elimino el empleado con id {id}", "alert alert-success");
+      await LoadEmpleadosView();
+    }
+
+    protected void BtnCloseAlert(object sender, EventArgs e)
+    {
+      alerta.Visible = false;
+    }
+
+    private void SetMessageAlert(string message, string cssClass)
+    {
+      lblMensajeAlerta.Text = message;
+      alerta.CssClass = cssClass;
+      alerta.Visible = true;
     }
 
 

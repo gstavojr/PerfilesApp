@@ -38,7 +38,15 @@ namespace PerfilesApp.Pages
 
     protected void GetDepartamento()
     {
-      Departamento departamentoSearched = this.departamentoRespository.GetDepartamento(this.departamentoId);
+      var response = this.departamentoRespository.GetDepartamento(this.departamentoId);
+
+      if (!response.isSucces)
+      {
+        this.SetMessageAlert(response.Message, "alert alert-danger mt-3");
+        return;
+      }
+
+      Departamento departamentoSearched = response.Data;
       if (departamentoSearched == null) return;
 
       txtNombre.Text = departamentoSearched.Nombre;
@@ -49,7 +57,13 @@ namespace PerfilesApp.Pages
 
     protected void BtnSave_Click(object sender, EventArgs e)
     {
-
+      if (string.IsNullOrEmpty(txtNombre.Text))
+      {
+        lblNombreError.Text = "El nombre es requerido";
+        lblNombreError.Visible = true;
+        this.SetMessageAlert("Validar Campos", "alert alert-danger mt-3");
+        return;
+      }
 
 
       Departamento departamento = new Departamento
@@ -59,21 +73,27 @@ namespace PerfilesApp.Pages
         Estado = ddlEstado.SelectedValue != "0" ? Convert.ToInt32(ddlEstado.SelectedValue) : 0
       };
 
-      bool resp = departamento.DepartamentoId == 0
+      var resp = departamento.DepartamentoId == 0
        ? this.departamentoRespository.CreateDepartamento(departamento)
        : this.departamentoRespository.UpdateDepartamento(departamento);
 
-      string message = resp ? "Se guardo el departamento" : "Error al guardar el departamento";
-      string cssClass = resp ? "alert alert-success mt-3" : "alert alert-danger mt-3";
+      string message = resp.isSucces ? "Se guardo el departamento" : "Error al guardar el departamento";
+      string cssClass = resp.isSucces ? "alert alert-success mt-3" : "alert alert-danger mt-3";
 
-      lblMensajeAlerta.Text = message;
-      alerta.CssClass = cssClass;
-      alerta.Visible = true;
+      
+      this.SetMessageAlert(message, cssClass);
 
       string url = ResolveUrl("~/Default.aspx");
 
       Response.AppendHeader("Refresh", $"2; url={url}");
 
+    }
+
+    private void SetMessageAlert(string message, string cssClass)
+    {
+      lblMensajeAlerta.Text = message;
+      alerta.CssClass = cssClass;
+      alerta.Visible = true;
     }
 
   }

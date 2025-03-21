@@ -19,8 +19,13 @@ namespace PerfilesApp
 
     private void GetDepartamentos()
     {
-      List<Departamento> departamentos = (List<Departamento>) this.departamentoRespository
-        .GetDepartamentos();
+      var response = this.departamentoRespository.GetDepartamentos();
+      if (!response.isSucces)
+      {
+        this.SetMessageAlert(response.Message, "alert alert-danger mt-1");
+        return;
+      }
+      List<Departamento> departamentos = (List<Departamento>)response.Data;
 
       foreach (var departamento in departamentos)
       {
@@ -45,20 +50,29 @@ namespace PerfilesApp
 
     protected void BtnDelete_Click(object sender, EventArgs e)
     {
-      try
-      {
-        LinkButton btn = (LinkButton)sender;
-        string departamentoId = btn.CommandArgument;
-        bool isDeleted = this.departamentoRespository.DeleteDepartamento(Convert.ToInt32(departamentoId));
-        if (isDeleted)
-        {
-          this.GetDepartamentos();
-        }
-      } catch (Exception ex)
-      {
+      LinkButton btn = (LinkButton)sender;
+      string departamentoId = btn.CommandArgument;
+      var response = this.departamentoRespository.DeleteDepartamento(Convert.ToInt32(departamentoId));
 
+      if (!response.isSucces)
+      {
+        this.SetMessageAlert(response.Message, "alert alert-danger mt-1");
+        return;
       }
+      this.GetDepartamentos();
       
+    }
+
+    protected void BtnCloseAlert(object sender, EventArgs e)
+    {
+      alerta.Visible = false;
+    }
+
+    private void SetMessageAlert(string message, string cssClass)
+    {
+      lblMensajeAlerta.Text = message;
+      alerta.CssClass = cssClass;
+      alerta.Visible = true;
     }
   }
 }

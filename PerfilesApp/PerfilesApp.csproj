@@ -330,6 +330,7 @@
     </Compile>
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\Empleado.cs" />
+    <Compile Include="Models\Response.cs" />
     <Compile Include="Pages\DepartamentoForm.aspx.cs">
       <DependentUpon>DepartamentoForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -10,11 +10,11 @@ namespace Perfiles.AccesoDatos.IRepository
 {
   interface IDepartamentoRepository
   {
-    IEnumerable<Departamento> GetDepartamentos();
-    Departamento GetDepartamento(int id);
-    bool CreateDepartamento(Departamento departamento);
-    bool UpdateDepartamento(Departamento newDepartamento);
-    bool DeleteDepartamento(int id);
+    Response<IEnumerable<Departamento>> GetDepartamentos();
+    Response<Departamento> GetDepartamento(int id);
+    Response<bool> CreateDepartamento(Departamento departamento);
+    Response<bool> UpdateDepartamento(Departamento newDepartamento);
+    Response<bool> DeleteDepartamento(int id);
     bool Save();
   }
 }

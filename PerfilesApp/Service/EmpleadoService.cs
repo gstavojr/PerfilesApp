@@ -19,19 +19,19 @@ namespace PerfilesApp.Service
       this.http = new HttpClientService();
     }
 
-    public async Task<Empleado> GetObject(int id)
+    public async Task<Response<Empleado>> GetObject(int id)
     {
-      var empleado = await this.http.GetAsync<Empleado>($"Empleado/{id}");
-      return empleado;
+      return await this.http.GetAsync<Empleado>($"Empleado/{id}");
+      
     }
 
-    public async Task<IEnumerable<Empleado>> GetObjects()
+    public async Task<Response<IEnumerable<Empleado>>> GetObjects()
     {
-      var empleadosList = await this.http.GetAsync<List<Empleado>>("Empleado");
+      var empleadosList = await this.http.GetAsync<IEnumerable<Empleado>>("Empleado");
       return empleadosList;
     }
 
-    public async Task<bool> Save(Empleado objetValue)
+    public async Task<Response<bool>> Save(Empleado objetValue)
     {
       string json = JsonConvert.SerializeObject(objetValue);
       HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -44,5 +44,12 @@ namespace PerfilesApp.Service
       return await this.http.PutAsync($"Empleado/{objetValue.EmpleadoId}", content);
 
     }
+
+    public async Task<Response<bool>> Delete(int id)
+    {
+      return await this.http.DeleteAsync($"Empleado/{id}");
+    }
+
+
   }
 }

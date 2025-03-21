@@ -17,15 +17,15 @@
       </div>
       <div class="form-group ms-1 d-flex align-items-center">
         <asp:Button ID="btnBuscar" runat="server" CssClass="btn btn-success mt-4" Text="Buscar" OnClick="BtnBuscar_Click" />
-        <asp:LinkButton 
-          ID="btnClear" 
-          runat="server" 
-          CssClass="btn btn-danger mt-4 ms-2" 
+        <asp:LinkButton
+          ID="btnClear"
+          runat="server"
+          CssClass="btn btn-danger mt-4 ms-2"
           OnClick="BtnClear_Click">
           <i class="fa-solid fa-trash"></i>
-         </asp:LinkButton>
+        </asp:LinkButton>
       </div>
-      
+
     </div>
     <div class="col-3 mb-3">
       <asp:LinkButton
@@ -37,6 +37,26 @@
       </asp:LinkButton>
     </div>
   </div>
+
+  <asp:Panel
+    ID="alerta"
+    class="alert alert-warning alert-dismissible fade show mt-3 "
+    role="alert"
+    runat="server"
+    Visible="false">
+    <div class="d-flex justify-content-between">
+
+      <asp:Label ID="lblMensajeAlerta" runat="server" Text="Operación exitosa."></asp:Label>
+
+      <asp:LinkButton class="close" ID="btnCloseAlert" OnClick="BtnCloseAlert" runat="server">
+        <i class="fa-solid fa-xmark" style="color: black !important;"></i>
+      </asp:LinkButton>
+
+
+    </div>
+
+
+  </asp:Panel>
 
   <div class="row">
     <div class="offset-12">
@@ -100,7 +120,7 @@
                   <asp:LinkButton
                     ID="btnDelete"
                     runat="server"
-                    CommandName="Delete"
+                    OnClick="BtnDelete_Click"
                     CommandArgument='<%# Eval("EmpleadoId ") %>'
                     CssClass="btn btn-danger">
                   <i class="fa-solid fa-trash"></i> Eliminar

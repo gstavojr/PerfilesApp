@@ -18,40 +18,42 @@ namespace Perfiles.AccesoDatos.Repository
     {
       this.conection = new Conection();
     }
-    public bool CreateDepartamento(Departamento departamento)
+    public Response<bool> CreateDepartamento(Departamento departamento)
     {
       return this.SaveDepartamento(departamento);
     }
 
 
 
-    public bool DeleteDepartamento(int id)
+    public Response<bool> DeleteDepartamento(int id)
     {
       var departamentoSearch = this.GetDepartamento(id);
 
       if (departamentoSearch == null)
       {
-        return false;
+        return new Response<bool>(false, "Departamento no existe");
       }
 
       try
       {
 
         this.conection.ExecuteNonQuery(
-          "DELETE FROM Departamento WHERE DepartamentoId = @DepartamentoId", 
+          "EXEC sp_DeleteEmpleadoById @DepartamentoId;", 
           new SqlParameter("@DepartamentoId", id)
         );
 
-        return true;
+        return new Response<bool>(true, "Departamento eliminado correctamente");
       }
       catch (Exception ex)
       {
-        return false;
+        // Mesanje de error
+        
+        return new Response<bool>(false, $"Error al eliminar el departamento: {ex.Message}");
 
       }
     }
 
-    public Departamento GetDepartamento(int id)
+    public Response<Departamento> GetDepartamento(int id)
     {
       try
       {
@@ -71,18 +73,23 @@ namespace Perfiles.AccesoDatos.Repository
           return null; // Si no se encuentra el departamento
         }, new SqlParameter("@DepartamentoId", id));
 
-        return departamento;
+        if (departamento == null)
+        {
+          return new Response<Departamento>(false, "Departamento no encontrado");
+        }
+
+        return new Response<Departamento>(true, "", departamento);
       }
-      catch (Exception)
+      catch (Exception ex)
       {
-        return null;
+        return new Response<Departamento>(false, $"Error al obtener el departamento: {ex.Message}");
       }
       
 
 
     }
 
-    public IEnumerable<Departamento> GetDepartamentos()
+    public Response<IEnumerable<Departamento>> GetDepartamentos()
     {
       IEnumerable<Departamento> departamentos = new List<Departamento>();
 
@@ -106,12 +113,12 @@ namespace Perfiles.AccesoDatos.Repository
 
         });
 
-        return departamentos;
+        return new Response<IEnumerable<Departamento>>(true, "", departamentos);
 
       }
       catch (Exception ex)
       {
-        return departamentos;
+        return new Response<IEnumerable<Departamento>>(false, $"Error al obtener los departamentos: {ex.Message}"); ;
       }
     }
 
@@ -120,12 +127,12 @@ namespace Perfiles.AccesoDatos.Repository
       throw new NotImplementedException();
     }
 
-    public bool UpdateDepartamento(Departamento departamento)
+    public Response<bool> UpdateDepartamento(Departamento departamento)
     {
       return this.SaveDepartamento(departamento);
     }
 
-    private bool SaveDepartamento(Departamento departamento)
+    private Response<bool> SaveDepartamento(Departamento departamento)
     {
 
       try
@@ -141,11 +148,11 @@ namespace Perfiles.AccesoDatos.Repository
           parameters
         );
 
-        return true;
+        return new Response<bool>(true, "Departamento guarado correctamente");
       }
       catch (Exception ex)
       {
-        return false;
+        return new Response<bool>(false, $"Error al guardar el departamento: {ex.Message}");
       }
 
     } 

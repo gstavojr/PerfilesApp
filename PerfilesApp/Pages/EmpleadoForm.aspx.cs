@@ -40,7 +40,13 @@ namespace PerfilesApp.Pages
 
     protected async Task GetEmpleado(int empleadoId)
     {
-      var empleadoSearched = await this.empleadoService.GetObject(empleadoId);
+      var respSearched = await this.empleadoService.GetObject(empleadoId);
+      if ( !respSearched.isSucces )
+      {
+        this.SetMessageAlert(respSearched.Message, "alert alert-danger mt-3");
+        return;
+      }
+      var empleadoSearched = respSearched.Data;
       if (empleadoSearched == null) return;
       lblEmpleadoId.Text = empleadoId.ToString();
       txtNombre.Text = empleadoSearched.Nombre;
@@ -56,8 +62,15 @@ namespace PerfilesApp.Pages
 
     protected void GetDepartamentos()
     {
-      List<Departamento> departamentos = (List<Departamento>)this.departamentoRespository
-        .GetDepartamentos();
+      var response = this.departamentoRespository.GetDepartamentos();
+
+      if (!response.isSucces)
+      {
+        this.SetMessageAlert(response.Message, "alert alert-danger mt-3");
+        return;
+      }
+
+      List<Departamento> departamentos = (List<Departamento>)response.Data;
 
       if (departamentos.Count == 0) return;
 
@@ -94,8 +107,8 @@ namespace PerfilesApp.Pages
 
       var resp = await this.empleadoService.Save(empleado);
 
-      string message = 1 == 1 ? "Se guardo el departamento" : "Error al guardar el departamento";
-      string cssClass = 1 == 1 ? "alert alert-success mt-3" : "alert alert-danger mt-3";
+      string message = resp.isSucces ? "Se guardo el empleado" : $"Error al guardar el empleado; {resp.Message}";
+      string cssClass = resp.isSucces ? "alert alert-success mt-3" : "alert alert-danger mt-3";
 
       this.SetMessageAlert(message, cssClass);
 
@@ -123,7 +136,6 @@ namespace PerfilesApp.Pages
         { txtDpi, lblDpiError },
         { txtFechaNacimiento, lblFechaNacimientoError },
         { txtFechaIngreso, lblFechaIngresoError },
-        { txtDireccion, lblDireccion },
       };
 
       // Limpiar mensajes previos 

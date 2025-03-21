@@ -14,12 +14,27 @@ namespace PerfilesServer.Respository
     {
       _conection = conection;
     }
-    public bool DeleteEmpleado(int id)
+    public async Task<ResponseApi<bool>> DeleteEmpleado(int id)
     {
-      throw new NotImplementedException();
+      try
+      {
+        var searchempleado = await this.GetEmpleado(id);
+        if (!searchempleado.IsSucces)
+        {
+          return new ResponseApi<bool>(false, "Empleado no encontrado", false);
+        }
+
+
+        SqlParameter[] parameters = { new SqlParameter("@EmpleadoId", id) };
+        await this._conection.ExecuteNonQueryAsync("DELETE FROM Empleado WHERE EmpleadoId = @EmpleadoId", parameters);
+        return new ResponseApi<bool>(true, "Empleado eliminado correctamente", true);
+      } catch( Exception ex )
+      {
+        return new ResponseApi<bool>(false, $"Error al eliminar empleado ${ex.Message}", false);
+      }
     }
 
-    public async Task<Empleado> GetEmpleado(int id)
+    public async Task<ResponseApi<Empleado>> GetEmpleado(int id)
     {
       try
       {
@@ -47,15 +62,20 @@ namespace PerfilesServer.Respository
           }
           return null;
         }, new SqlParameter("@EmpleadoId", id));
-        return empleado;
+        if (empleado == null)
+        {
+
+          return new  ResponseApi<Empleado>(false, "Empleado no encontrado", null);
+        }
+        return new ResponseApi<Empleado>(true, "Empleado encontrado", empleado);
       }
       catch (Exception ex)
       {
-        return null;
+        return new ResponseApi<Empleado>(false, $"Error al obtener empleado ${ex.Message}", null);
       }
     }
 
-    public async Task<IEnumerable<Empleado>> GetEmpleados()
+    public async Task<ResponseApi<IEnumerable<Empleado>>> GetEmpleados()
     {
       IEnumerable<Empleado> empleados = [];
 
@@ -86,16 +106,16 @@ namespace PerfilesServer.Respository
           }
           return empleadosTemp;
         });
-        return empleados;
+        return new ResponseApi<IEnumerable<Empleado>>(true, "Empleados encontrados", empleados);
       }
       catch (Exception ex)
       {
-        return [];
+        return new ResponseApi<IEnumerable<Empleado>>(false, $"Error al obtener empleados ${ex.Message}", empleados);
       }
 
     }
 
-    public async Task<bool> SaveEmpleado(Empleado empleado)
+    public async Task<ResponseApi<bool>> SaveEmpleado(Empleado empleado)
     {
 
       try
@@ -117,11 +137,11 @@ namespace PerfilesServer.Respository
 
         await this._conection.ExecuteNonQueryAsync(query, parameters);
 
-        return true;
+        return new ResponseApi<bool>(true, "Empleado guardado correctamente");
       }
       catch (Exception ex)
       {
-        return false;
+        return new ResponseApi<bool>(false, $"Error al guardar empleado ${ex.Message}", true);
       }
 
     }
